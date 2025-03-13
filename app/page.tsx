@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { ArrowRight, Search, TrendingUp } from "lucide-react"
+import Link from "next/link";
+import { ArrowRight, Search, TrendingUp } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   return (
@@ -15,13 +15,22 @@ export default function Home() {
             <span className="text-xl font-bold">Savr</span>
           </Link>
           <nav className="hidden md:flex gap-6">
-            <Link href="#features" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link
+              href="#features"
+              className="text-sm font-medium hover:underline underline-offset-4"
+            >
               Features
             </Link>
-            <Link href="#how-it-works" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link
+              href="#how-it-works"
+              className="text-sm font-medium hover:underline underline-offset-4"
+            >
               How It Works
             </Link>
-            <Link href="#pricing" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link
+              href="#pricing"
+              className="text-sm font-medium hover:underline underline-offset-4"
+            >
               Pricing
             </Link>
           </nav>
@@ -44,15 +53,17 @@ export default function Home() {
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="inline-flex items-center rounded-lg bg-savings-100 dark:bg-savings-900/30 px-3 py-1 text-sm text-savings-800 dark:text-savings-300">
-                  <span className="mr-2">💰</span> Save up to 30% on your purchases
+                  <span className="mr-2">💰</span> Save up to 30% on your
+                  purchases
                 </div>
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                    Track Prices. Compare Products. <span className="text-primary">Save Money.</span>
+                    Track Prices. Compare Products.{" "}
+                    <span className="text-primary">Save Money.</span>
                   </h1>
                   <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Savr helps you track price changes, compare products, and get notified about discounts across
-                    multiple retailers.
+                    Savr helps you track price changes, compare products, and
+                    get notified about discounts across multiple retailers.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -63,7 +74,11 @@ export default function Home() {
                     </Button>
                   </Link>
                   <Link href="#how-it-works">
-                    <Button variant="outline" size="lg" className="w-full min-[400px]:w-auto">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full min-[400px]:w-auto"
+                    >
                       Learn More
                     </Button>
                   </Link>
@@ -89,23 +104,37 @@ export default function Home() {
                       <div className="rounded-lg border p-3 transition-all hover:border-primary hover:shadow-sm">
                         <div className="flex items-center justify-between">
                           <div className="font-medium">Wireless Headphones</div>
-                          <div className="text-sm font-medium text-discount-500 price-drop-animation">-15% Off</div>
+                          <div className="text-sm font-medium text-discount-500 price-drop-animation">
+                            -15% Off
+                          </div>
                         </div>
-                        <div className="mt-1 text-sm text-muted-foreground">$89.99 at TechStore</div>
+                        <div className="mt-1 text-sm text-muted-foreground">
+                          $89.99 at TechStore
+                        </div>
                       </div>
                       <div className="rounded-lg border p-3 transition-all hover:border-primary hover:shadow-sm">
                         <div className="flex items-center justify-between">
-                          <div className="font-medium">Smart Watch Series 5</div>
-                          <div className="text-sm font-medium text-discount-500 price-drop-animation">-10% Off</div>
+                          <div className="font-medium">
+                            Smart Watch Series 5
+                          </div>
+                          <div className="text-sm font-medium text-discount-500 price-drop-animation">
+                            -10% Off
+                          </div>
                         </div>
-                        <div className="mt-1 text-sm text-muted-foreground">$199.99 at GadgetWorld</div>
+                        <div className="mt-1 text-sm text-muted-foreground">
+                          $199.99 at GadgetWorld
+                        </div>
                       </div>
                       <div className="rounded-lg border p-3 transition-all hover:border-primary hover:shadow-sm">
                         <div className="flex items-center justify-between">
                           <div className="font-medium">Bluetooth Speaker</div>
-                          <div className="text-sm font-medium text-discount-500 price-drop-animation">-20% Off</div>
+                          <div className="text-sm font-medium text-discount-500 price-drop-animation">
+                            -20% Off
+                          </div>
                         </div>
-                        <div className="mt-1 text-sm text-muted-foreground">$49.99 at SoundShop</div>
+                        <div className="mt-1 text-sm text-muted-foreground">
+                          $49.99 at SoundShop
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -114,7 +143,10 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50 dark:bg-muted/10">
+        <section
+          id="features"
+          className="w-full py-12 md:py-24 lg:py-32 bg-muted/50 dark:bg-muted/10"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
@@ -136,8 +168,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold">Smart Search</h3>
                 <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-                  Find exactly what you're looking for with powerful filters for categories, price ranges, and
-                  discounts.
+                  Find exactly what you're looking for with powerful filters for
+                  categories, price ranges, and discounts.
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 rounded-lg border p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50">
@@ -161,7 +193,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold">Price Comparison</h3>
                 <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-                  Compare prices across multiple retailers in real-time to find the absolute best deals.
+                  Compare prices across multiple retailers in real-time to find
+                  the absolute best deals.
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 rounded-lg border p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50">
@@ -170,7 +203,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold">Price Tracking</h3>
                 <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-                  Track price changes over time and get instant notifications when prices drop to your target.
+                  Track price changes over time and get instant notifications
+                  when prices drop to your target.
                 </p>
               </div>
             </div>
@@ -180,7 +214,9 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">How It Works</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  How It Works
+                </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Start saving money in just a few simple steps.
                 </p>
@@ -211,7 +247,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold">Save Money</h3>
                 <p className="text-center text-sm text-gray-500">
-                  Get notified when prices drop and save money on your purchases.
+                  Get notified when prices drop and save money on your
+                  purchases.
                 </p>
               </div>
             </div>
@@ -225,7 +262,9 @@ export default function Home() {
               <TrendingUp className="h-6 w-6" />
               <span className="text-xl font-bold">Savr</span>
             </div>
-            <p className="text-sm text-gray-500">Track prices, compare products, and save money on your purchases.</p>
+            <p className="text-sm text-gray-500">
+              Track prices, compare products, and save money on your purchases.
+            </p>
           </div>
           <div className="flex flex-col gap-2 md:gap-4">
             <h3 className="text-sm font-medium">Company</h3>
@@ -273,6 +312,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
-
