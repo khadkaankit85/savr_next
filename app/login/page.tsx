@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { TrendingUp } from "lucide-react";
@@ -20,6 +20,14 @@ export default function LoginPage() {
     e.preventDefault();
     // Handle login logic here
     console.log("Login with:", email, password);
+  };
+
+  const handleGoogleBtn = () => {
+    signIn("google");
+  };
+
+  const handleFacebookBtn = () => {
+    signIn("facebook");
   };
 
   return (
@@ -88,10 +96,18 @@ export default function LoginPage() {
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  onClick={handleGoogleBtn}
+                  className="w-full"
+                >
                   Google
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button
+                  onClick={handleFacebookBtn}
+                  variant="outline"
+                  className="w-full"
+                >
                   Facebook
                 </Button>
               </div>
