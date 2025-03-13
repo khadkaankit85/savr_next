@@ -18,8 +18,6 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login with:", email, password);
   };
 
   const handleGoogleBtn = () => {
@@ -28,6 +26,21 @@ export default function LoginPage() {
 
   const handleFacebookBtn = () => {
     signIn("facebook");
+  };
+
+  const customLogin = async () => {
+    if (email && password) {
+      const result = await signIn("credentials-login", {
+        email,
+        password,
+        redirect: false,
+      });
+      if (result?.error) {
+        console.log(result);
+      } else {
+        window.location.href = "/dashboard";
+      }
+    }
   };
 
   return (
@@ -80,7 +93,13 @@ export default function LoginPage() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button
+                onClick={() => {
+                  customLogin();
+                }}
+                type="submit"
+                className="w-full"
+              >
                 Sign In
               </Button>
             </form>

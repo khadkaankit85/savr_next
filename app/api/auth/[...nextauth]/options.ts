@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -22,12 +22,14 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.FACEBOOK_SECRET!,
     }),
     CredentialsProvider({
+      id: "credentials-login",
+      type: "credentials",
       name: "Credentials",
       credentials: {
-        username: {
-          label: "Username",
-          type: "text",
-          placeholder: "Your Username",
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "Your Email",
         },
         password: {
           label: "Password",
@@ -36,11 +38,15 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        //this is where we need to retrive the users data to verify their credentials
+        // #TODO: this is where we need to retrive the users data to verify their credentials
         // docs at: https://next-auth.js.org/providers/credentials
-        const user = { id: "69", name: "angkit", password: "strong@password" };
+        const user = {
+          id: "69",
+          email: "angkit@gmail.com",
+          password: "strong@password",
+        };
         if (
-          credentials?.username === user.name &&
+          credentials?.email === user.email &&
           credentials?.password === user.password
         ) {
           return user;
