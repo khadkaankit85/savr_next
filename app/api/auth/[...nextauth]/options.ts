@@ -71,10 +71,7 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Your Secret Password",
         },
       },
-      async authorize(credentials) {
-        // #TODO: this is where we need to retrive the users data to verify their credentials
-        // docs at: https://next-auth.js.org/providers/credentials
-      },
+      async authorize(credentials) {},
     }),
   ],
   callbacks: {
