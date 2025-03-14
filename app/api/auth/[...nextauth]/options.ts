@@ -55,6 +55,27 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    CredentialsProvider({
+      id: "credentials-signup",
+      type: "credentials",
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "Your Email",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Your Secret Password",
+        },
+      },
+      async authorize(credentials) {
+        // #TODO: this is where we need to retrive the users data to verify their credentials
+        // docs at: https://next-auth.js.org/providers/credentials
+      },
+    }),
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {

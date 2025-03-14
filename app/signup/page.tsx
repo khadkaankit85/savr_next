@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import Link from "next/link"
-import { useState } from "react"
-import { TrendingUp } from "lucide-react"
+import Link from "next/link";
+import { useState } from "react";
+import { TrendingUp } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function SignupPage() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle signup logic here
-    console.log("Signup with:", name, email, password)
-  }
+    console.log("Signup with:", name, email, password);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -35,8 +35,12 @@ export default function SignupPage() {
             <div className="absolute top-4 right-4">
               <ThemeToggle />
             </div>
-            <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
-            <p className="text-sm text-muted-foreground">Enter your information to create an account</p>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              Create an account
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Enter your information to create an account
+            </p>
           </div>
           <div className="mt-8">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -82,7 +86,9 @@ export default function SignupPage() {
                   <Separator />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-4">
@@ -104,6 +110,5 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
