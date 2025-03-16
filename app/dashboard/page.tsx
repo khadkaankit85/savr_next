@@ -1,13 +1,28 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  Bell,
+  ChevronDown,
+  Home,
+  LogOut,
+  Menu,
+  Search,
+  Settings,
+  TrendingUp,
+  User,
+} from "lucide-react";
 
-import Link from "next/link"
-import { useState } from "react"
-import { Bell, ChevronDown, Home, LogOut, Menu, Search, Settings, TrendingUp, User } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,14 +30,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ThemeToggle } from "@/components/theme-toggle"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { signOut } from "next-auth/react";
 
 export default function DashboardPage() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleLogout = () => {
+    signOut();
+  };
 
   const trackedProducts = [
     {
@@ -52,13 +71,13 @@ export default function DashboardPage() {
       retailer: "SoundShop",
       image: "/placeholder.svg",
     },
-  ]
+  ];
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle search logic here
-    console.log("Searching for:", searchQuery)
-  }
+    console.log("Searching for:", searchQuery);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -72,23 +91,38 @@ export default function DashboardPage() {
           </SheetTrigger>
           <SheetContent side="left" className="w-72">
             <nav className="grid gap-6 text-lg font-medium">
-              <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <TrendingUp className="h-6 w-6 text-primary" />
                 <span className="sr-only">Savr</span>
               </Link>
-              <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <Home className="h-5 w-5" />
                 Dashboard
               </Link>
-              <Link href="/dashboard/search" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/search"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <Search className="h-5 w-5" />
                 Search
               </Link>
-              <Link href="/dashboard/tracker" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/tracker"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <TrendingUp className="h-5 w-5" />
                 Price Tracker
               </Link>
-              <Link href="/dashboard/settings" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/settings"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <Settings className="h-5 w-5" />
                 Settings
               </Link>
@@ -140,7 +174,7 @@ export default function DashboardPage() {
                 Settings
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 Log out
               </DropdownMenuItem>
@@ -192,38 +226,54 @@ export default function DashboardPage() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Tracked Products</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Tracked Products
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">12</div>
-                <p className="text-xs text-muted-foreground">+2 from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +2 from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Price Alerts</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Price Alerts
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">3</div>
-                <p className="text-xs text-muted-foreground">+1 from last week</p>
+                <p className="text-xs text-muted-foreground">
+                  +1 from last week
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Savings</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Savings
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$45.99</div>
-                <p className="text-xs text-muted-foreground">+$12.50 from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +$12.50 from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Active Discounts</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Active Discounts
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">7</div>
-                <p className="text-xs text-muted-foreground">+2 from last week</p>
+                <p className="text-xs text-muted-foreground">
+                  +2 from last week
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -253,12 +303,20 @@ export default function DashboardPage() {
                       </div>
                     </CardHeader>
                     <CardContent className="p-4">
-                      <CardTitle className="line-clamp-1 text-base">{product.name}</CardTitle>
-                      <CardDescription className="line-clamp-1">{product.retailer}</CardDescription>
+                      <CardTitle className="line-clamp-1 text-base">
+                        {product.name}
+                      </CardTitle>
+                      <CardDescription className="line-clamp-1">
+                        {product.retailer}
+                      </CardDescription>
                       <div className="mt-2 flex items-center justify-between">
                         <div className="flex items-baseline gap-2">
-                          <span className="text-lg font-bold">${product.currentPrice}</span>
-                          <span className="text-sm text-muted-foreground line-through">${product.originalPrice}</span>
+                          <span className="text-lg font-bold">
+                            ${product.currentPrice}
+                          </span>
+                          <span className="text-sm text-muted-foreground line-through">
+                            ${product.originalPrice}
+                          </span>
                         </div>
                         <span className="text-sm font-medium text-discount-500 price-drop-animation">
                           -{product.discount}% Off
@@ -283,7 +341,9 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-medium">Wireless Headphones</div>
-                      <div className="text-sm text-muted-foreground">Price dropped by 15%</div>
+                      <div className="text-sm text-muted-foreground">
+                        Price dropped by 15%
+                      </div>
                     </div>
                     <Button size="sm">View</Button>
                   </div>
@@ -292,7 +352,9 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-medium">Smart Watch Series 5</div>
-                      <div className="text-sm text-muted-foreground">Price dropped by 10%</div>
+                      <div className="text-sm text-muted-foreground">
+                        Price dropped by 10%
+                      </div>
                     </div>
                     <Button size="sm">View</Button>
                   </div>
@@ -301,7 +363,9 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-medium">Bluetooth Speaker</div>
-                      <div className="text-sm text-muted-foreground">Price dropped by 20%</div>
+                      <div className="text-sm text-muted-foreground">
+                        Price dropped by 20%
+                      </div>
                     </div>
                     <Button size="sm">View</Button>
                   </div>
@@ -312,6 +376,5 @@ export default function DashboardPage() {
         </main>
       </div>
     </div>
-  )
+  );
 }
-

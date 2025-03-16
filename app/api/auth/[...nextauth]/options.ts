@@ -21,6 +21,7 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.FACEBOOK_ID!,
       clientSecret: process.env.FACEBOOK_SECRET!,
     }),
+    //this is for login with text input option where users type their username and password
     CredentialsProvider({
       id: "credentials-login",
       type: "credentials",
@@ -55,6 +56,7 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    //this option is for users to signup with user name, email and password
     CredentialsProvider({
       id: "credentials-signup",
       type: "credentials",

@@ -114,7 +114,7 @@ export default function LoginPage() {
                   </span>
                 </div>
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="mt-6 grid grid-cols-1 gap-4">
                 <Button
                   variant="outline"
                   onClick={handleGoogleBtn}
@@ -122,6 +122,8 @@ export default function LoginPage() {
                 >
                   Google
                 </Button>
+                {/*
+                 *
                 <Button
                   onClick={handleFacebookBtn}
                   variant="outline"
@@ -129,6 +131,7 @@ export default function LoginPage() {
                 >
                   Facebook
                 </Button>
+                 */}
               </div>
             </div>
             <div className="mt-6 text-center text-sm">

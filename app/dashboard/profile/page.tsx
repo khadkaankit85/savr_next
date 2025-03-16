@@ -1,13 +1,31 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Bell, Camera, ChevronDown, Home, LogOut, Menu, Pencil, Search, Settings, TrendingUp, User } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import {
+  Bell,
+  Camera,
+  ChevronDown,
+  Home,
+  LogOut,
+  Menu,
+  Pencil,
+  Search,
+  Settings,
+  TrendingUp,
+  User,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,16 +33,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Textarea } from "@/components/ui/textarea"
-import { ThemeToggle } from "@/components/theme-toggle"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Textarea } from "@/components/ui/textarea";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function ProfilePage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [isEditing, setIsEditing] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
     name: "John Doe",
     email: "john.doe@example.com",
@@ -35,27 +53,29 @@ export default function ProfilePage() {
     totalSaved: "$145.75",
     trackedItems: 12,
     alerts: 5,
-  })
+  });
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Searching for:", searchQuery)
-  }
+    e.preventDefault();
+    console.log("Searching for:", searchQuery);
+  };
 
   const handleSaveProfile = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsEditing(false)
+    e.preventDefault();
+    setIsEditing(false);
     // Here you would typically save the profile data to a backend
-    console.log("Saving profile:", profileData)
-  }
+    console.log("Saving profile:", profileData);
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
     setProfileData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -69,27 +89,45 @@ export default function ProfilePage() {
           </SheetTrigger>
           <SheetContent side="left" className="w-72">
             <nav className="grid gap-6 text-lg font-medium">
-              <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <TrendingUp className="h-6 w-6 text-primary" />
                 <span className="sr-only">Savr</span>
               </Link>
-              <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <Home className="h-5 w-5" />
                 Dashboard
               </Link>
-              <Link href="/dashboard/search" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/search"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <Search className="h-5 w-5" />
                 Search
               </Link>
-              <Link href="/dashboard/tracker" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/tracker"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <TrendingUp className="h-5 w-5" />
                 Price Tracker
               </Link>
-              <Link href="/dashboard/profile" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/profile"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <User className="h-5 w-5" />
                 Profile
               </Link>
-              <Link href="/dashboard/settings" className="flex items-center gap-2 text-lg font-semibold">
+              <Link
+                href="/dashboard/settings"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
                 <Settings className="h-5 w-5" />
                 Settings
               </Link>
@@ -201,7 +239,11 @@ export default function ProfilePage() {
           <div className="flex items-center justify-between">
             <h1 className="text-lg font-semibold md:text-2xl">My Profile</h1>
             {!isEditing && (
-              <Button onClick={() => setIsEditing(true)} variant="outline" size="sm">
+              <Button
+                onClick={() => setIsEditing(true)}
+                variant="outline"
+                size="sm"
+              >
                 <Pencil className="mr-2 h-4 w-4" />
                 Edit Profile
               </Button>
@@ -215,7 +257,11 @@ export default function ProfilePage() {
                   <div className="flex flex-col items-center gap-4">
                     <div className="relative">
                       <div className="h-24 w-24 overflow-hidden rounded-full bg-muted">
-                        <img src="/placeholder.svg" alt="Profile" className="h-full w-full object-cover" />
+                        <img
+                          src="/placeholder.svg"
+                          alt="Profile"
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                       {isEditing && (
                         <Button
@@ -224,14 +270,20 @@ export default function ProfilePage() {
                           className="absolute bottom-0 right-0 h-8 w-8 rounded-full"
                         >
                           <Camera className="h-4 w-4" />
-                          <span className="sr-only">Change profile picture</span>
+                          <span className="sr-only">
+                            Change profile picture
+                          </span>
                         </Button>
                       )}
                     </div>
                     <div className="text-center">
                       <h2 className="text-xl font-bold">{profileData.name}</h2>
-                      <p className="text-sm text-muted-foreground">{profileData.location}</p>
-                      <p className="text-xs text-muted-foreground">Member since {profileData.joinDate}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {profileData.location}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Member since {profileData.joinDate}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -245,11 +297,15 @@ export default function ProfilePage() {
                   <div className="grid gap-4">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">Total Saved</span>
-                      <span className="font-bold text-primary">{profileData.totalSaved}</span>
+                      <span className="font-bold text-primary">
+                        {profileData.totalSaved}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">Tracked Items</span>
-                      <span className="font-bold">{profileData.trackedItems}</span>
+                      <span className="font-bold">
+                        {profileData.trackedItems}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">Active Alerts</span>
@@ -265,7 +321,9 @@ export default function ProfilePage() {
                 <CardHeader>
                   <CardTitle>Personal Information</CardTitle>
                   <CardDescription>
-                    {isEditing ? "Edit your personal information" : "Your personal information"}
+                    {isEditing
+                      ? "Edit your personal information"
+                      : "Your personal information"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -273,7 +331,12 @@ export default function ProfilePage() {
                     <form onSubmit={handleSaveProfile} className="grid gap-4">
                       <div className="grid gap-2">
                         <Label htmlFor="name">Full Name</Label>
-                        <Input id="name" name="name" value={profileData.name} onChange={handleInputChange} />
+                        <Input
+                          id="name"
+                          name="name"
+                          value={profileData.name}
+                          onChange={handleInputChange}
+                        />
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="email">Email</Label>
@@ -287,7 +350,12 @@ export default function ProfilePage() {
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="phone">Phone</Label>
-                        <Input id="phone" name="phone" value={profileData.phone} onChange={handleInputChange} />
+                        <Input
+                          id="phone"
+                          name="phone"
+                          value={profileData.phone}
+                          onChange={handleInputChange}
+                        />
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="location">Location</Label>
@@ -300,10 +368,20 @@ export default function ProfilePage() {
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="bio">Bio</Label>
-                        <Textarea id="bio" name="bio" rows={4} value={profileData.bio} onChange={handleInputChange} />
+                        <Textarea
+                          id="bio"
+                          name="bio"
+                          rows={4}
+                          value={profileData.bio}
+                          onChange={handleInputChange}
+                        />
                       </div>
                       <div className="flex gap-2 justify-end mt-4">
-                        <Button variant="outline" type="button" onClick={() => setIsEditing(false)}>
+                        <Button
+                          variant="outline"
+                          type="button"
+                          onClick={() => setIsEditing(false)}
+                        >
                           Cancel
                         </Button>
                         <Button type="submit">Save Changes</Button>
@@ -313,19 +391,27 @@ export default function ProfilePage() {
                     <div className="grid gap-4">
                       <div className="grid gap-1">
                         <h3 className="text-sm font-medium">Email</h3>
-                        <p className="text-sm text-muted-foreground">{profileData.email}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {profileData.email}
+                        </p>
                       </div>
                       <div className="grid gap-1">
                         <h3 className="text-sm font-medium">Phone</h3>
-                        <p className="text-sm text-muted-foreground">{profileData.phone}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {profileData.phone}
+                        </p>
                       </div>
                       <div className="grid gap-1">
                         <h3 className="text-sm font-medium">Location</h3>
-                        <p className="text-sm text-muted-foreground">{profileData.location}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {profileData.location}
+                        </p>
                       </div>
                       <div className="grid gap-1">
                         <h3 className="text-sm font-medium">Bio</h3>
-                        <p className="text-sm text-muted-foreground">{profileData.bio}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {profileData.bio}
+                        </p>
                       </div>
                     </div>
                   )}
@@ -344,8 +430,12 @@ export default function ProfilePage() {
                       </div>
                       <div>
                         <p className="text-sm font-medium">Price Drop Alert</p>
-                        <p className="text-xs text-muted-foreground">Wireless Headphones dropped to $89.99</p>
-                        <p className="text-xs text-muted-foreground">2 days ago</p>
+                        <p className="text-xs text-muted-foreground">
+                          Wireless Headphones dropped to $89.99
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          2 days ago
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -354,8 +444,12 @@ export default function ProfilePage() {
                       </div>
                       <div>
                         <p className="text-sm font-medium">Added New Item</p>
-                        <p className="text-xs text-muted-foreground">Started tracking Smart Watch Series 5</p>
-                        <p className="text-xs text-muted-foreground">5 days ago</p>
+                        <p className="text-xs text-muted-foreground">
+                          Started tracking Smart Watch Series 5
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          5 days ago
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -364,8 +458,12 @@ export default function ProfilePage() {
                       </div>
                       <div>
                         <p className="text-sm font-medium">Updated Settings</p>
-                        <p className="text-xs text-muted-foreground">Changed notification preferences</p>
-                        <p className="text-xs text-muted-foreground">1 week ago</p>
+                        <p className="text-xs text-muted-foreground">
+                          Changed notification preferences
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          1 week ago
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -376,6 +474,5 @@ export default function ProfilePage() {
         </main>
       </div>
     </div>
-  )
+  );
 }
-

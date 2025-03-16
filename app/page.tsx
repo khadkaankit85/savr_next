@@ -4,8 +4,14 @@ import { ArrowRight, Search, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession();
+  if (session && session.user) {
+    redirect("/dashboard");
+  }
   return (
     <div className="flex flex-col min-h-screen">
       <header className="border-b">

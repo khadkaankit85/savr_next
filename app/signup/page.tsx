@@ -91,13 +91,16 @@ export default function SignupPage() {
                   </span>
                 </div>
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="mt-6 grid grid-cols-1 gap-4">
                 <Button variant="outline" className="w-full">
                   Google
                 </Button>
+                {/*
+                *
                 <Button variant="outline" className="w-full">
                   Facebook
                 </Button>
+                   **/}
               </div>
             </div>
             <div className="mt-6 text-center text-sm">
