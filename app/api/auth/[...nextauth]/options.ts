@@ -176,6 +176,7 @@ export const authOptions: NextAuthOptions = {
             if (!existingUser) {
               return false; // User does not exist, deny login
             }
+            return true
           } else if (userIntention === "signup") {
             // If the user is trying to sign up, create a new user if they don't exist
 
@@ -196,9 +197,8 @@ export const authOptions: NextAuthOptions = {
                   },
                 },
               });
-              //let the bro signup
-              return true
             }
+            return true
           } else {
             // If the intention is unclear, deny the sign-in
             return false;
@@ -214,9 +214,22 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id,
+          token.name = user.name
+      }
+      return token
+    },
+    async session({ session, token }) {
+      if (token?.id) {
+        session.user = { name: token.name }
+      }
+      return session;
+    }
+    ,
     async redirect({ url, baseUrl }) {
       return url.startsWith(baseUrl) ? baseUrl : baseUrl;
     },
   },
-  adapter: MongooseAdapter(connectToMango()),
 };

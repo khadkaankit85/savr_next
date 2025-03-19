@@ -1,8 +1,8 @@
 import { PagesOptions } from "next-auth";
 
 const pages: PagesOptions = {
-  signIn: "/auth/login",
-  signOut: "/auth/login",
+  signIn: "/signup",
+  signOut: "/",
   error: "/auth/error",
   verifyRequest: "auth/verify-request",
   newUser: "/auth/new-user",

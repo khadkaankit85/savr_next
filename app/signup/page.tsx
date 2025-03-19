@@ -21,7 +21,11 @@ export default function SignupPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle signup logic here
-    console.log("Signup with:", name, email, password);
+  };
+
+  const handleGoogleBtn = () => {
+    document.cookie = "user-signup-intent=signup; max-age:60; path=/"
+    signIn("google");
   };
 
   const handleCreateAccount = () => {
@@ -100,7 +104,7 @@ export default function SignupPage() {
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-1 gap-4">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" onClick={handleGoogleBtn}>
                   Google
                 </Button>
                 {/*
