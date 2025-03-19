@@ -4,7 +4,7 @@ import type React from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { TrendingUp } from "lucide-react";
+import { Loader, LoaderPinwheel, TrendingUp } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,12 +15,15 @@ import { ThemeToggle } from "@/components/theme-toggle";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [isFetching, setIsFetching] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
 
   const handleGoogleBtn = () => {
+    document.cookie = "user-signup-intent=login; max-age:60; path=/"
     signIn("google");
   };
 
@@ -29,18 +32,25 @@ export default function LoginPage() {
   };
 
   const customLogin = async () => {
+    setIsFetching(true);
+    setErrMsg("");
     if (email && password) {
-      const result = await signIn("credentials-login", {
+      const result = await signIn("textfield-google-login", {
         email,
         password,
         redirect: false,
       });
       if (result?.error) {
-        console.log(result);
+        if (result.status === 401) {
+          setErrMsg("Invalid username or password");
+        } else {
+          setErrMsg(result.error);
+        }
       } else {
         window.location.href = "/dashboard";
       }
     }
+    setIsFetching(false);
   };
 
   return (
@@ -93,13 +103,16 @@ export default function LoginPage() {
                   required
                 />
               </div>
+              {errMsg && <p className="text-sm text-red-600">{errMsg}</p>}
               <Button
                 onClick={() => {
                   customLogin();
                 }}
                 type="submit"
                 className="w-full"
+                disabled={isFetching}
               >
+                {isFetching && <Loader className="spin" />}
                 Sign In
               </Button>
             </form>

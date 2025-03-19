@@ -59,11 +59,19 @@
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, hsl(var(--primary) / 0.2) 0%, hsl(var(--primary) / 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.2) 0%,
+    hsl(var(--primary) / 0.1) 100%
+  );
 }
 
 .dark .gradient-bg {
-  background: linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, hsl(var(--primary) / 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.3) 0%,
+    hsl(var(--primary) / 0.1) 100%
+  );
 }
 
 .price-drop-animation {
@@ -85,3 +93,16 @@
   }
 }
 
+/* css for login and signup page spinner on the main buttons */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s ease infinite;
+}

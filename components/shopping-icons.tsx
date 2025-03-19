@@ -1,4 +1,13 @@
-import { ShoppingBag, ShoppingCart, Tag, Percent, CreditCard, DollarSign, Gift, Truck } from "lucide-react"
+import {
+  ShoppingBag,
+  ShoppingCart,
+  Tag,
+  Percent,
+  CreditCard,
+  DollarSign,
+  Gift,
+  Truck,
+} from "lucide-react";
 
 export const ShoppingIcons = {
   ShoppingBag,
@@ -9,7 +18,7 @@ export const ShoppingIcons = {
   DollarSign,
   Gift,
   Truck,
-}
+};
 
 export function SavingsIcon({ className }: { className?: string }) {
   return (
@@ -27,7 +36,7 @@ export function SavingsIcon({ className }: { className?: string }) {
       <path d="M6 12h12" />
       <circle cx="12" cy="12" r="10" />
     </svg>
-  )
+  );
 }
 
 export function PriceDropIcon({ className }: { className?: string }) {
@@ -45,7 +54,7 @@ export function PriceDropIcon({ className }: { className?: string }) {
       <path d="M17 7 7 17" />
       <path d="M17 17H7V7" />
     </svg>
-  )
+  );
 }
 
 export function PriceCompareIcon({ className }: { className?: string }) {
@@ -64,6 +73,5 @@ export function PriceCompareIcon({ className }: { className?: string }) {
       <line x1="12" y1="20" x2="12" y2="4" />
       <line x1="6" y1="20" x2="6" y2="14" />
     </svg>
-  )
+  );
 }
-

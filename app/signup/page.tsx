@@ -11,9 +11,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { signIn } from "next-auth/react";
 
 export default function SignupPage() {
-  const [name, setName] = useState("");
+  const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,6 +22,10 @@ export default function SignupPage() {
     e.preventDefault();
     // Handle signup logic here
     console.log("Signup with:", name, email, password);
+  };
+
+  const handleCreateAccount = () => {
+    signIn("textfield-google-signup");
   };
 
   return (
@@ -45,17 +50,6 @@ export default function SignupPage() {
           <div className="mt-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
@@ -70,13 +64,27 @@ export default function SignupPage() {
                 <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
-                  type="password"
+                  type="text"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <div className="space-y-2">
+                <Label htmlFor="password2">Confirm Password</Label>
+                <Input
+                  id="password2"
+                  type="text"
+                  value={password2}
+                  onChange={(e) => setPassword2(e.target.value)}
+                  required
+                />
+              </div>
+              <Button
+                onClick={handleCreateAccount}
+                type="submit"
+                className="w-full"
+              >
                 Create Account
               </Button>
             </form>
