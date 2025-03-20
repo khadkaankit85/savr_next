@@ -48,25 +48,21 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        // #TODO: this is where we need to retrive the users data to verify their credentials
-        // docs at: https://next-auth.js.org/providers/credentials
         if (!credentials || !credentials.password || !credentials.email) {
           throw new Error("missing input field/s");
         } else {
           await connectToMango()
           //get the user from the database and return the user:)
           const user = await User.findOne({ email: credentials.email });
-          if (
-            user &&
-            user.email === credentials.email &&
-            user.password === credentials.password
-          )
-            return user;
-          else {
-            return null;
-          }
+          if (!user) return null
+
+          const isMatch = user.comparePassword(credentials.password)
+          console.log(isMatch)
+
+          if (isMatch) return user
+          else return null
         }
-      },
+      }
     }),
     // this option is for users to signup with user name, email and password
     CredentialsProvider({
