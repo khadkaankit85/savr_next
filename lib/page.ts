@@ -1,9 +1,9 @@
 import { PagesOptions } from "next-auth";
 
-const pages: PagesOptions = {
+const pages: Partial<PagesOptions> = {
   signIn: "/signup",
   signOut: "/",
-  error: "/auth/error",
+  error: "/signup",
   verifyRequest: "auth/verify-request",
   newUser: "/auth/new-user",
 };

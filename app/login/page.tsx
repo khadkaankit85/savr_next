@@ -4,7 +4,7 @@ import type React from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { Loader, LoaderPinwheel, TrendingUp } from "lucide-react";
+import { Loader, TrendingUp } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

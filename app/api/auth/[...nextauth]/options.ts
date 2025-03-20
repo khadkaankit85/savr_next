@@ -203,9 +203,6 @@ export const authOptions: NextAuthOptions = {
             // If the intention is unclear, deny the sign-in
             return false;
           }
-
-          // Allow the sign-in
-          return true;
         } catch (error) {
           console.error("Error during sign-in:", error);
           return false; // Deny sign-in if an error occurs
