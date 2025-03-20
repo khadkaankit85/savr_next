@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { redirect } from "next/navigation";
 
 export function ClientHeader(): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -110,9 +111,10 @@ export function ClientHeader(): JSX.Element {
       </div>
       <div className="flex items-center gap-4">
         <ThemeToggle />
-        <Button variant="outline" size="icon" className="relative">
+
+        <Button variant="outline" size="icon" className="relative" onClick={() => redirect("/dashboard/notifications")}>
           <Bell className="h-4 w-4" />
-          <span className="sr-only">Notifications</span>
+          <span className="sr-only" >Notifications</span>
           <span className="absolute right-1 top-1 flex h-2 w-2 rounded-full bg-primary"></span>
         </Button>
         <DropdownMenu>

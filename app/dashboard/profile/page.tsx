@@ -39,6 +39,7 @@ import { Label } from "@/components/ui/label";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Textarea } from "@/components/ui/textarea";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { redirect } from "next/navigation";
 
 export default function ProfilePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -154,7 +155,7 @@ export default function ProfilePage() {
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <Button variant="outline" size="icon" className="relative">
+          <Button variant="outline" size="icon" className="relative" onClick={() => redirect("/notifications")}>
             <Bell className="h-4 w-4" />
             <span className="sr-only">Notifications</span>
             <span className="absolute right-1 top-1 flex h-2 w-2 rounded-full bg-primary"></span>
