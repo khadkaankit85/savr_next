@@ -23,22 +23,24 @@ export default function LoginPage() {
   };
 
   const handleGoogleBtn = () => {
+    if (!email || !password) return
     document.cookie = "user-signup-intent=login; max-age:60; path=/"
-    signIn("google");
+    signIn("google", { email, password });
   };
 
   const handleFacebookBtn = () => {
     signIn("facebook");
   };
 
-  const customLogin = async () => {
+  const customLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
     setIsFetching(true);
     setErrMsg("");
     if (email && password) {
       const result = await signIn("textfield-google-login", {
         email,
         password,
-        redirect: false,
+        redirect: false
       });
       if (result?.error) {
         if (result.status === 401) {
@@ -97,7 +99,7 @@ export default function LoginPage() {
                 </div>
                 <Input
                   id="password"
-                  type="password"
+                  type="text"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -105,9 +107,7 @@ export default function LoginPage() {
               </div>
               {errMsg && <p className="text-sm text-red-600">{errMsg}</p>}
               <Button
-                onClick={() => {
-                  customLogin();
-                }}
+                onClick={customLogin}
                 type="submit"
                 className="w-full"
                 disabled={isFetching}

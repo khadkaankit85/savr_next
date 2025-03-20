@@ -48,28 +48,23 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        // #TODO: this is where we need to retrive the users data to verify their credentials
-        // docs at: https://next-auth.js.org/providers/credentials
         if (!credentials || !credentials.password || !credentials.email) {
           throw new Error("missing input field/s");
         } else {
           await connectToMango()
           //get the user from the database and return the user:)
           const user = await User.findOne({ email: credentials.email });
-          if (
-            user &&
-            user.email === credentials.email &&
-            user.password === credentials.password
-          )
-            return user;
-          else {
-            return null;
-          }
+          if (!user) return null
+
+          const isMatch = user.comparePassword(credentials.password)
+          console.log(isMatch)
+
+          if (isMatch) return user
+          else return null
         }
-      },
+      }
     }),
-    /* this option is for users to signup with user name, email and password
-     */
+    // this option is for users to signup with user name, email and password
     CredentialsProvider({
       id: "textfield-google-signup",
       type: "credentials",
@@ -91,7 +86,8 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Your Secret Password",
         },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        console.log(credentials)
         if (
           !credentials ||
           !credentials.password ||
@@ -108,9 +104,25 @@ export const authOptions: NextAuthOptions = {
         if (existingUser) {
           throw new Error("User already exists. Please log in instead.");
         }
-
+        //TODO send email to users to verify their email
         //else
-        const newUser = await User.create({ email: credentials.email });
+        const email = credentials.email
+        const newUser = await User.create({
+          fullName: "New User", // Default to "New User" if no full name is provided
+          username: email ? email.split("@")[0] : null, // Generate username from email, or null if no email
+          password: generateRandomPassword(), // Assuming you have a function to generate a random password
+          email: email, // Using email directly from the user
+          additionalInfo: {
+            googleId: null, // Assign null if no googleId is available
+            role: "user", // Default role
+            token: {
+              value: randomUUID() || null, // Generate a unique token or assign null if not available
+              createdAt: new Date() || null, // Assign current date as createdAt
+              requestCount: 0, // Default request count
+            },
+          },
+        });
+
         return newUser;
       },
     }),
@@ -155,7 +167,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         //else
-        const newUser = await User.insertOne({ email: credentials.email });
+        const newUser = await User.create({ email: credentials.email });
         return newUser;
       },
     }),
