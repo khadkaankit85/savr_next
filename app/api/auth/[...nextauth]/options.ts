@@ -68,8 +68,7 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
-    /* this option is for users to signup with user name, email and password
-     */
+    // this option is for users to signup with user name, email and password
     CredentialsProvider({
       id: "textfield-google-signup",
       type: "credentials",
@@ -91,7 +90,8 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Your Secret Password",
         },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        console.log(credentials)
         if (
           !credentials ||
           !credentials.password ||
@@ -108,9 +108,25 @@ export const authOptions: NextAuthOptions = {
         if (existingUser) {
           throw new Error("User already exists. Please log in instead.");
         }
-
+        //TODO send email to users to verify their email
         //else
-        const newUser = await User.create({ email: credentials.email });
+        const email = credentials.email
+        const newUser = await User.create({
+          fullName: "New User", // Default to "New User" if no full name is provided
+          username: email ? email.split("@")[0] : null, // Generate username from email, or null if no email
+          password: generateRandomPassword(), // Assuming you have a function to generate a random password
+          email: email, // Using email directly from the user
+          additionalInfo: {
+            googleId: null, // Assign null if no googleId is available
+            role: "user", // Default role
+            token: {
+              value: randomUUID() || null, // Generate a unique token or assign null if not available
+              createdAt: new Date() || null, // Assign current date as createdAt
+              requestCount: 0, // Default request count
+            },
+          },
+        });
+
         return newUser;
       },
     }),
@@ -155,7 +171,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         //else
-        const newUser = await User.insertOne({ email: credentials.email });
+        const newUser = await User.create({ email: credentials.email });
         return newUser;
       },
     }),

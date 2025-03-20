@@ -28,8 +28,9 @@ export default function SignupPage() {
     signIn("google");
   };
 
-  const handleCreateAccount = () => {
-    signIn("textfield-google-signup");
+  const handleCreateAccount = (e: React.FormEvent) => {
+    e.preventDefault()
+    signIn("textfield-google-signup", { email, password2, password });
   };
 
   return (
@@ -57,6 +58,7 @@ export default function SignupPage() {
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="m@example.com"
                   value={email}
@@ -68,6 +70,7 @@ export default function SignupPage() {
                 <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
+                  name="password"
                   type="text"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -78,6 +81,7 @@ export default function SignupPage() {
                 <Label htmlFor="password2">Confirm Password</Label>
                 <Input
                   id="password2"
+                  name="password2"
                   type="text"
                   value={password2}
                   onChange={(e) => setPassword2(e.target.value)}

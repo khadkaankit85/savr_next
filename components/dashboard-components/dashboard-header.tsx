@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, FormEvent, JSX } from "react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   Bell,
   ChevronDown,
@@ -31,7 +31,6 @@ import { redirect } from "next/navigation";
 
 export function ClientHeader(): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>("");
-
   const handleLogout = (): void => {
     signOut();
   };
