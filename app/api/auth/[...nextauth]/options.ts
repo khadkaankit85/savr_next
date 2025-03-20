@@ -5,10 +5,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/user.model";
 import { cookies } from "next/headers";
 import connectToMango from "@/lib/mongodb";
-import MongooseAdapter from "@/lib/mongoose-next-auth-adapter/next-auth-mongoose-adapter/src";
 import { generateRandomPassword } from "@/lib/utils";
 import { randomUUID } from "crypto";
-import { getMaxAge } from "next/dist/server/image-optimizer";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
@@ -55,6 +53,7 @@ export const authOptions: NextAuthOptions = {
         if (!credentials || !credentials.password || !credentials.email) {
           throw new Error("missing input field/s");
         } else {
+          await connectToMango()
           //get the user from the database and return the user:)
           const user = await User.findOne({ email: credentials.email });
           if (
@@ -102,6 +101,8 @@ export const authOptions: NextAuthOptions = {
           throw new Error("missing input field/s");
         }
 
+        await connectToMango()
+
         //if the email is in use
         const existingUser = await User.findOne({ email: credentials.email });
         if (existingUser) {
@@ -109,7 +110,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         //else
-        const newUser = await User.insertOne({ email: credentials.email });
+        const newUser = await User.create({ email: credentials.email });
         return newUser;
       },
     }),
@@ -145,6 +146,8 @@ export const authOptions: NextAuthOptions = {
           throw new Error("missing input field/s");
         }
 
+
+        await connectToMango()
         //if the email is in use
         const existingUser = await User.findOne({ email: credentials.email });
         if (existingUser) {
@@ -161,6 +164,7 @@ export const authOptions: NextAuthOptions = {
     //before calling the function, client must set a cookie with user-signup-intent = login or singup 
     async signIn({ user, account, profile, email, credentials }) {
 
+      await connectToMango()
       if (account?.provider === "google") {
         try {
           // Retrieve the user's intention (login or signup) from the cookie
